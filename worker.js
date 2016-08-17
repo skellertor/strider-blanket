@@ -1,10 +1,13 @@
 var fs = require('fs');
 var path = require('path');
 var pug = require('pug');
+var jade = require('jade');
 
 var fpath = path.join(__dirname, 'node_modules/mocha/lib/reporters/templates/coverage.jade');
 var template = fs.readFileSync(fpath, 'utf8');
-var htmlCov = pug.compile(template, {filename: fpath});
+// var htmlCov = pug.compile(template, {filename: fpath});
+var htmlCov = jade.compile(template, {filename: fpath});
+
 
 function coverageClass(n) {
   if (n >= 75) return 'high';
