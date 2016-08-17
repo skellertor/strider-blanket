@@ -27,7 +27,7 @@
     "url": "https://github.com/Strider-CD/strider-blanket/issues"
   },
   "dependencies": {
-    "mocha": "^2.3.0",
+    "mocha": "~1.14.0",
     "pug": "^2.0.0-beta4"
   },
   "strider": {
