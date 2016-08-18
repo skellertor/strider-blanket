@@ -34,7 +34,7 @@ module.exports = {
         context.comment('Generating coverage report');
         context.cmd({
           cmd: config.test || 'mocha -r blanket -R json-cov',
-          silent: true
+          silent: false
         }, function (err, stdout) {
           if (err) return done(err);
           var report;
