@@ -22,9 +22,12 @@ module.exports = {
   init: function (config, job, context, cb) {
     config = config || {};
     var ret = {
+      env: {
+          test_fail: 0
+      },
       listen: function (io, context) {
-        io.on('job.status.phase.done', function (id, data) {
-            console.log('FRANKY', data)
+        io.on('plugin.blanket.done', function (id, data) {
+            data.exitCode = env.test_fail
         });
       },
       prepare: function (context, done) {
@@ -39,6 +42,9 @@ module.exports = {
           cmd: config.test || 'mocha -r blanket -R json-cov',
           silent: false
         }, function (err, stdout) {
+          if(err) {
+            env.test_fail = 1
+          }
           /**
            * If any test fails it will return exit code for failure
            * Regardless of test failure continue
