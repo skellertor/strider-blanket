@@ -26,8 +26,9 @@ module.exports = {
           test_fail: 0
       },
       listen: function (io, context) {
+        var self = this;
         io.on('plugin.blanket.done', function (id, data) {
-            data.exitCode = env.test_fail
+            data.exitCode = self.env.test_fail
         });
       },
       prepare: function (context, done) {
