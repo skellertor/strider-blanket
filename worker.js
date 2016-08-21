@@ -66,6 +66,7 @@ module.exports = {
           /**
            * Attach the test results to the job object
            */
+          // var newHTML = htmlCov({cov: report, coverageClass: coverageClass()})
           job.test_results = {
             percent: report.coverage,
             coverageStatus: goodness,
@@ -90,7 +91,7 @@ module.exports = {
             sloc: report.sloc,
             html: htmlCov({
               cov: report,
-              coverageClass: coverageClass
+              coverageClass: coverageClass(report.coverage)
             }),
             files: report.files.map(function (file) {
               return {
