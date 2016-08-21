@@ -60,6 +60,8 @@ module.exports = {
             coverageStatus: goodness,
             covered: report.hits,
             sloc: report.sloc,
+            stats: report.stats,
+            failures: report.failures,
             files: report.files.map(function (file) {
               return {
                 percent: file.coverage,
