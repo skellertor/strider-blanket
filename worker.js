@@ -37,13 +37,14 @@ module.exports = {
         context.cmd('npm install blanket', done);
       },
       test: function (context, done) {
+        var self = this;
         context.comment('Generating coverage report');
         context.cmd({
           cmd: config.test || 'mocha -r blanket -R json-cov',
           silent: false
         }, function (err, stdout) {
           if(err) {
-            env.test_fail = 1
+            self.env.test_fail = 1
           }
           /**
            * If any test fails it will return exit code for failure
