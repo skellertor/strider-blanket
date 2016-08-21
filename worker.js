@@ -28,7 +28,7 @@ module.exports = {
       listen: function (io, context) {
         var self = this;
         io.on('plugin.blanket.done', function (id, data) {
-            data.exitCode = self.env.test_fail
+
         });
       },
       prepare: function (context, done) {
@@ -101,7 +101,7 @@ module.exports = {
               };
             })
           }, 'replace', null);
-
+          if(self.env.test_fail) return done(err);
           done();
         });
       }
