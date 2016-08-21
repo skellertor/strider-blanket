@@ -1,11 +1,9 @@
 var fs = require('fs');
 var path = require('path');
-var pug = require('pug');
 var jade = require('jade');
 
 var fpath = path.join(__dirname, 'node_modules/mocha/lib/reporters/templates/coverage.jade');
 var template = fs.readFileSync(fpath, 'utf8');
-// var htmlCov = pug.compile(template, {filename: fpath});
 var htmlCov = jade.compile(template, {filename: fpath});
 
 
@@ -24,6 +22,11 @@ module.exports = {
   init: function (config, job, context, cb) {
     config = config || {};
     var ret = {
+      listen: function (io, context) {
+        io.on('job.status.phase.done', function (id, data) {
+            console.log('FRANKY', data)
+        });
+      },
       prepare: function (context, done) {
         var haveit = fs.existsSync(path.join(context.dataDir, 'node_modules/blanket'));
         context.data({enabled: true});
