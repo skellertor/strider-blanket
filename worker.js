@@ -83,6 +83,7 @@ module.exports = {
               };
             })
           };
+          var goodnessPercent = coverageClass(report.coverage);
           context.data({
             enabled: true,
             percent: report.coverage,
@@ -91,7 +92,7 @@ module.exports = {
             sloc: report.sloc,
             html: htmlCov({
               cov: report,
-              coverageClass: coverageClass(report.coverage)
+              coverageClass: goodnessPercent
             }),
             files: report.files.map(function (file) {
               return {
