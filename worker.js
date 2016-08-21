@@ -36,10 +36,15 @@ module.exports = {
           cmd: config.test || 'mocha -r blanket -R json-cov',
           silent: false
         }, function (err, stdout) {
-          if (err) return done(err);
+          /**
+           * If any test fails it will return exit code for failure
+           * Regardless of test failure continue
+           */
+          var beginOfJson = stdout.indexOf('{');
+          var jsonString = stdout.substr(beginOfJson, stdout.length);
           var report;
           try {
-            report = JSON.parse(stdout);
+            report = JSON.parse(jsonString);
           } catch (e) {
             return done(new Error('coverage report not json'));
           }
@@ -47,6 +52,23 @@ module.exports = {
           report.files.map(function (file) {
             file.filename = path.relative(context.dataDir, file.filename);
           });
+          /**
+           * Attach the test results to the job object
+           */
+          job.test_results = {
+            percent: report.coverage,
+            coverageStatus: goodness,
+            covered: report.hits,
+            sloc: report.sloc,
+            files: report.files.map(function (file) {
+              return {
+                percent: file.coverage,
+                covered: file.hits,
+                sloc: file.sloc,
+                path: file.filename
+              };
+            })
+          };
           context.data({
             enabled: true,
             percent: report.coverage,
