@@ -7,12 +7,12 @@ var template = fs.readFileSync(fpath, 'utf8');
 var htmlCov = jade.compile(template, {filename: fpath});
 
 
-function coverageClass(n) {
+var coverageClass = function (n) {
   if (n >= 75) return 'high';
   if (n >= 50) return 'medium';
   if (n >= 25) return 'low';
   return 'terrible';
-}
+};
 
 module.exports = {
   // Initialize the plugin for a job
@@ -83,7 +83,6 @@ module.exports = {
               };
             })
           };
-          var goodnessPercent = coverageClass(report.coverage);
           context.data({
             enabled: true,
             percent: report.coverage,
@@ -92,7 +91,7 @@ module.exports = {
             sloc: report.sloc,
             html: htmlCov({
               cov: report,
-              coverageClass: goodnessPercent
+              coverageClass: coverageClass
             }),
             files: report.files.map(function (file) {
               return {
