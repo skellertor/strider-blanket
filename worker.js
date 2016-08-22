@@ -66,7 +66,6 @@ module.exports = {
           /**
            * Attach the test results to the job object
            */
-          // var newHTML = htmlCov({cov: report, coverageClass: coverageClass()})
           job.test_results = {
             percent: report.coverage,
             coverageStatus: goodness,
@@ -83,6 +82,7 @@ module.exports = {
               };
             })
           };
+          report.files = [];
           context.data({
             enabled: true,
             percent: report.coverage,
