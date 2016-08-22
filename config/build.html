@@ -1,7 +1,4 @@
-<i class="icon-fixed-width icon-[[ { pending: 'ellipsis-horizontal', good: 'ok', bad: 'remove', ok: 'meh'}[data.coverageStatus] || 'ellipsis-horizontal' ]]"></i>
-<span>
-[[ (data.coveragStatus === 'good') ? "&#1F600" : (data.coverageStatus === 'ok') ? "&#1F611" : "&#1F621" ]]
-</span>
+[[ (data.coveragStatus === 'good') ? "&#x1f600;" : (data.coverageStatus === 'ok') ? "&#x1F611;" : "&#x1F621;" ]]
 <strong>Blanket.js Coverage</strong>
 [[ data.coverageStatus || 'pending' ]]
 <span class="details" ng-show="data.coverageStatus && data.coverageStatus !== 'pending'">
