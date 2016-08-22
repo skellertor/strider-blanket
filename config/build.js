@@ -12,9 +12,22 @@ app.directive('htmlSrc', function () {
   return {
     restrict: 'A',
     link: function (scope, element, attrs) {
-      scope.$watch('data.html', function (value) {
-        attrs.$set('src', 'data:text/html,' + value);
-      },true);
+      scope.$watch(`job.plugin_data["${attrs.pluginStatus}"]`, function (value) {
+        scope.data = value;
+      });
+      scope.$watch(`showStatus[job.ref.branch]["${attrs.pluginStatus}"]`, function (value) {
+        if(value) {
+          var classes = document.getElementsByClassName('status-blanket').className;
+          if(classes.indexOf('ng-hide') !== -1) {
+            var newClasses = classes.replace(/ng-hide/, '');
+            document.getElementsByClassName('status-blanket').className = newClasses;
+          }
+        }
+        scope.show = value;
+      });
+      scope.$watch('job', function (value) {
+        scope.job = value;
+      });
     }
   };
 });
