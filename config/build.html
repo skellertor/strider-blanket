@@ -1,6 +1,6 @@
 <i class="icon-fixed-width icon-[[ { pending: 'ellipsis-horizontal', good: 'ok', bad: 'remove', ok: 'meh'}[data.coverageStatus] || 'ellipsis-horizontal' ]]"></i>
 <span>
-[[ (data.coveragStatus === 'good') ? ":smile:" : (data.coverageStatus === 'ok') ? ":expressionless:" : ":anguished:" ]]
+[[ (data.coveragStatus === 'good') ? "$#1F600" : (data.coverageStatus === 'ok') ? "&#1F611" : "&#1F621" ]]
 </span>
 <strong>Blanket.js Coverage</strong>
 [[ data.coverageStatus || 'pending' ]]
