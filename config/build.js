@@ -12,10 +12,10 @@ app.directive('htmlSrc', function () {
   return {
     restrict: 'A',
     link: function (scope, element, attrs) {
-      scope.$watch(`job.plugin_data["${attrs.pluginStatus}"]`, function (value) {
+      scope.$watch('job.plugin_data.blanket', function (value) {
         scope.data = value;
       });
-      scope.$watch(`showStatus[job.ref.branch]["${attrs.pluginStatus}"]`, function (value) {
+      scope.$watch('showStatus[job.ref.branch]', function (value) {
         if(value) {
           var classes = document.getElementsByClassName('status-blanket').className;
           if(classes.indexOf('ng-hide') !== -1) {
