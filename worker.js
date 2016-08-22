@@ -102,6 +102,7 @@ module.exports = {
               };
             })
           }, 'replace', null);
+          console.log('FILE', job.test_results.files);
           if(self.env.test_fail) return done(err);
           done();
         });
