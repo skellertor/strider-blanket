@@ -10,16 +10,8 @@
 [[ data.files.length ]] file[[ data.files.length > 1 ? 's' : '']]
 <button class="btn btn-small btn-primary" ng-click="showing=true">Details</button>
 </span>
-<div class="blanket-more-info" ng-show="true">
+<div class="more-info" ng-show="showing">
   <iframe html-src="data.html"></iframe>
-  <div class="closer" ng-click=showing=true onclick="remove-hide()">&times;</div>
-  <script>
-    function remove_hide() {
-      var classes = $('.blanket-more-info').attr('class');
-      if(classes.indexOf('ng-hide') !== -1) {
-        var newClasses = classes.replace(/ng-hide/, '');
-        $('.status-blanket').attr('class', newClasses);
-      }
-    }
-  </script>
+  <div class="closer" ng-click="showing=false">&times;</div>
 </div>
+
