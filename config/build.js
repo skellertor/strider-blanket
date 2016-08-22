@@ -17,11 +17,10 @@ app.directive('htmlSrc', function () {
       });
       scope.$watch('showStatus[job.ref.branch]', function (value) {
         if(value) {
-          var classes = document.getElementsByClassName('status-blanket').className;
+          var classes = $('.status-blanket').attr('class');
           if(classes.indexOf('ng-hide') !== -1) {
             var newClasses = classes.replace(/ng-hide/, '');
-            document.getElementsByClassName('status-blanket').className = newClasses;
-          }
+            $('.status-blanket').attr('class', newClasses);          }
         }
         scope.show = value;
       });
